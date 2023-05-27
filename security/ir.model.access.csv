@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_m2st_hk_roadshipping_roadshipping,m2st_hk_roadshipping_roadshipping,model_m2st_hk_roadshipping_roadshipping,base.group_user,1,1,1,1
+"access_m2st_hk_roadshipping_roadshipping_portal_user","m2st.hk.roadshipping.roadshipping portal user access","model_m2st_hk_roadshipping_roadshipping","base.group_portal","1","1","1","1"
+
+access_m2st_hk_roadshipping_roadshipping_file_upload,m2st_hk_roadshipping_roadshipping_file_upload,model_m2st_hk_roadshipping_roadshipping_file_upload,base.group_user,1,1,1,1
+"access_m2st_hk_roadshipping_roadshipping_file_upload_portal_user","m2st.hk.roadshipping.roadshipping file upload portal user access","model_m2st_hk_roadshipping_roadshipping_file_upload","base.group_portal","1","1","1","1"
+
+access_m2st_hk_roadshipping_travel_booking,m2st_hk_roadshipping_travel_booking,model_m2st_hk_roadshipping_travel_booking,base.group_user,1,1,1,1
+"access_m2st_hk_roadshipping_travel_booking_portal_user","m2st.hk.roadshipping.travel.booking portal user access","model_m2st_hk_roadshipping_travel_booking","base.group_portal","1","1","1","1"
+
+access_m2st_hk_roadshipping_message,m2st_hk_roadshipping_message,model_m2st_hk_roadshipping_message,base.group_user,1,1,1,1
+"access_m2st_hk_roadshipping_message_portal_user","m2st.hk.roadshipping.travel.booking portal user access","model_m2st_hk_roadshipping_message","base.group_portal","1","1","1","1"
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+<!-- tree view -->
+<record id="view_m2st_hk_roadshipping_message_tree" model="ir.ui.view">
+    <field name="name">m2st_hk_roadshipping.message.tree</field>
+    <field name="model">m2st_hk_roadshipping.message</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="travel_booking_id"/>
+            <field name="sender_id"/>
+            <field name="receiver_id"/>
+            <field name="message"/>
+            <field name="date"/>
+        </tree>
+    </field>
+</record>
+
+<!-- form view -->
+<record id="view_m2st_hk_roadshipping_message_form" model="ir.ui.view">
+    <field name="name">m2st_hk_roadshipping.message.form</field>
+    <field name="model">m2st_hk_roadshipping.message</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="travel_booking_id"/>
+                    <field name="sender_id"/>
+                    <field name="receiver_id"/>
+                    <field name="message"/>
+                    <field name="date"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+    </data>
+</odoo>
+

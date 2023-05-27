@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_road_travel_booking_form" model="ir.ui.view">
+            <field name="name">m2st_hk_roadshipping.travel_booking.form</field>
+            <field name="model">m2st_hk_roadshipping.travel_booking</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                          <group>
+                            <group>
+                            <field name="sender_id"/>
+                            </group>
+                            <group>
+                            <field name="travel_id"/>
+                            </group>
+                            <group>
+                            <field name="receiver_partner_id"/>
+                            </group>
+                            </group>
+                        <group>
+                            <group>
+                            <field name="receiver_name"/>
+                            <field name="receiver_email"/>
+                            <field name="receiver_phone"/>
+                            <field name="receiver_address"/>
+                            <field name="type_of_luggage"/>
+                            </group>
+                            <group>
+                             <field name="status"/>
+                             <field name="luggage_width"/>
+                             <field name="luggage_height"/>
+                            <field name="luggage_dimension"/>
+                            <field name="luggage_weight"/>
+                            <field name="booking_price"/>
+                            <field name="disable"/>
+                            <field name="code"/>
+                            </group>
+                        </group>
+                        <group>
+                              <field name="luggage_image1" widget="image" options='{"size": [800, 500]}'/>
+                              <field name="luggage_image2" widget="image" options='{"size": [800, 500]}'/>
+                              <field name="luggage_image3" widget="image" options='{"size": [800, 500]}'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Tree View -->
+        <record id="view_road_travel_booking_tree" model="ir.ui.view">
+            <field name="name">m2st_hk_roadshipping.travel_booking.tree</field>
+            <field name="model">m2st_hk_roadshipping.travel_booking</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sender_id"/>
+                    <field name="travel_id"/>
+                    <field name="receiver_partner_id"/>
+                    <field name="status"/>
+                    <field name="code"/>
+                    <field name="type_of_luggage"/>
+
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

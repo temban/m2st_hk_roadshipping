@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+<record id="travel_form_road" model="ir.ui.view">
+    <field name="name">m2st_hk_roadshipping.roadshipping.form</field>
+    <field name="model">m2st_hk_roadshipping.roadshipping</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="user_partner_id"/>
+                        <field name="travel_type"/>
+                        <field name="status"/>
+                        <field name="disable"/>
+                        <field name="type_of_luggage_accepted"/>
+                    </group>
+                    <group>
+                        <field name="departure_town"/>
+                        <field name="arrival_town"/>
+                        <field name="departure_date"/>
+                        <field name="arrival_date"/>
+                    </group>
+                </group>
+<group>
+    <field name="files_uploaded_id">
+        <tree>
+            <field name="cni_doc" widget="image" options='{"size": [800, 800]}'/>
+        </tree>
+    </field>
+</group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+<record id="travel_tree" model="ir.ui.view">
+    <field name="name">m2st_hk_roadshipping.roadshipping.form</field>
+    <field name="model">m2st_hk_roadshipping.roadshipping</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="user_partner_id" string="User Partner"/>
+            <field name="travel_type" string="Travel Type"/>
+            <field name="status" string="Status"/>
+            <field name="disable" string="Disable"/>
+            <field name="departure_town" string="Departure Town"/>
+            <field name="arrival_town" string="Arrival Town"/>
+            <field name="departure_date" string="Departure Date"/>
+            <field name="arrival_date" string="Arrival Date"/>
+            <field name="type_of_luggage_accepted" string="Accepted Luggage Types"/>
+            <field name="files_uploaded_id" string="Uploaded Files">
+                <tree>
+                    <field name="cni_doc" widget="image" string="CNI Document"/>
+                </tree>
+            </field>
+        </tree>
+    </field>
+</record>
+
+
+
+     <record id="travel_action_road_accepted" model="ir.actions.act_window">
+        <field name="name">Travel Announcements Accepted</field>
+        <field name="type">ir.actions.act_window</field>
+         <field name="res_model">m2st_hk_roadshipping.roadshipping</field>
+         <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="travel_tree"/>
+            <field name="domain">[('status', '=', 'accepted')]</field>
+            <field name="context">{}</field>
+     </record>
+
+         <record id="travel_action_road_rejected" model="ir.actions.act_window">
+        <field name="name">Travel Announcements Rejected</field>
+        <field name="type">ir.actions.act_window</field>
+         <field name="res_model">m2st_hk_roadshipping.roadshipping</field>
+         <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="travel_tree"/>
+            <field name="domain">[('status', '=', 'rejected')]</field>
+            <field name="context">{}</field>
+     </record>
+
+             <record id="travel_action_road_pending" model="ir.actions.act_window">
+        <field name="name">Pending Travel Announcements</field>
+        <field name="type">ir.actions.act_window</field>
+         <field name="res_model">m2st_hk_roadshipping.roadshipping</field>
+         <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="travel_tree"/>
+            <field name="domain">[('status', '=', 'pending')]</field>
+            <field name="context">{}</field>
+     </record>
+
+
+            <!-- Action Bookings-->
+        <!-- Action -->
+        <record id="action_booking_road_pending" model="ir.actions.act_window">
+            <field name="name">Pending Bookings</field>
+            <field name="res_model">m2st_hk_roadshipping.travel_booking</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('status', '=', 'pending')]</field>
+        </record>
+
+           <record id="action_booking_road_accepted" model="ir.actions.act_window">
+            <field name="name">Bookings Accepted</field>
+            <field name="res_model">m2st_hk_roadshipping.travel_booking</field>
+            <field name="view_mode">tree,form</field>
+               <field name="domain">[('status', '=', 'accepted')]</field>
+        </record>
+
+           <record id="action_booking_road_rejected" model="ir.actions.act_window">
+            <field name="name">Bookings Rejected</field>
+            <field name="res_model">m2st_hk_roadshipping.travel_booking</field>
+            <field name="view_mode">tree,form</field>
+             <field name="domain">[('status', '=', 'rejected')]</field>
+        </record>
+
+           <record id="action_booking_road_completed" model="ir.actions.act_window">
+            <field name="name">Bookings Completed</field>
+            <field name="res_model">m2st_hk_roadshipping.travel_booking</field>
+            <field name="view_mode">tree,form</field>
+               <field name="domain">[('status', '=', 'completed')]</field>
+        </record>
+        <!-- Menu -->
+
+
+                <!-- Action -->
+        <record id="action_messaging" model="ir.actions.act_window">
+            <field name="name">Bookings Negotiations</field>
+            <field name="res_model">m2st_hk_roadshipping.message</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+                <!-- Action -->
+        <record id="action_messaging" model="ir.actions.act_window">
+            <field name="name">Bookings Negotiations</field>
+            <field name="res_model">m2st_hk_roadshipping.message</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_main_road" name="HubKilo Road-Shipping Services" sequence="10"/>
+
+    <!-- Travels  -->
+    <menuitem id="menu_sub_road" name="Travel Announcements" parent="menu_main_road" sequence="20"/>
+
+    <!-- Menu Items for Submenu Travels -->
+    <menuitem id="menu_road_item1" name="Pending Travel Announcements" parent="menu_sub_road" action="travel_action_road_pending" sequence="10"/>
+    <menuitem id="menu_road_item2" name="Travel Announcements Accepted" parent="menu_sub_road" action="travel_action_road_accepted" sequence="20"/>
+    <menuitem id="menu_road_item3" name="Rejected Travel Announcements" parent="menu_sub_road" action="travel_action_road_rejected" sequence="30"/>
+
+    <!-- Bookings  -->
+    <menuitem id="menu_sub2_road" name="Bookings" parent="menu_main_road" sequence="30"/>
+
+    <!-- Menu Items for Bookings  -->
+    <menuitem id="menu_road_item5" name="Pending Bookings" parent="menu_sub2_road" action="action_booking_road_pending" sequence="20"/>
+    <menuitem id="menu_road_item6" name="Bookings Accepted" parent="menu_sub2_road" action="action_booking_road_accepted" sequence="30"/>
+    <menuitem id="menu_road_item7" name="Bookings Rejected" parent="menu_sub2_road" action="action_booking_road_rejected" sequence="40"/>
+    <menuitem id="menu_road_item8" name="Bookings Completed" parent="menu_sub2_road" action="action_booking_road_completed" sequence="50"/>
+
+    <menuitem id="menu_road_item9" name="Booking Negotiations" parent="menu_main_road" action="action_messaging" sequence="40"/>
+
+
+</odoo>
