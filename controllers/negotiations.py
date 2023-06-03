@@ -35,7 +35,7 @@ class MessageController(http.Controller):
                 'sender_id': message.sender_id.id,
                 'receiver_id': message.receiver_id.id,
                 'message': message.message,
-                'date': message.date.strftime('%Y-%m-%d'),
+                'date': message.date.strftime('%Y-%m-%d %H:%M:%S'),
                 'travel_booking': {
                     'id': message.travel_booking_id.id,
                     'luggage_weight': message.travel_booking_id.luggage_weight,

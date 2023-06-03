@@ -130,3 +130,6 @@ class ResUsers(models.Model):
 
 class m2st_hk_airshipping(models.Model):
     _inherit = 'm2st_hk_airshipping.airshipping'
+
+class m2st_hk_travel_booking(models.Model):
+    _inherit = 'm2st_hk_airshipping.travel_booking'

@@ -13,13 +13,6 @@ class TravelBookingController(http.Controller):
         booking_price = kw.get('booking_price')
 
         booking = request.env['m2st_hk_roadshipping.travel_booking'].sudo().browse(booking_id)
-
-        if booking.travel_id.user_partner_id.id == http.request.env.user.partner_id.id:
-            error_response = {
-                'success': False,
-                'error_message': 'This action is not authorized!'
-            }
-            return error_response
         if booking.status == 'accepted' or booking.status == 'rejected' or booking.status == 'completed':
             error_response = {
                 'success': False,
@@ -36,18 +29,19 @@ class TravelBookingController(http.Controller):
         else:
             return 'Request Failed'
 
-    @http.route('/road/booking/completed', auth='user', csrf=False, website=True,
+    @http.route('/all/booking/completed', auth='user', csrf=False, website=True,
                 methods=['PUT'], type='json', cors='*')
     def complete_booking(self, **post):
         booking_code = post.get('booking_code')
         booking = request.env['m2st_hk_roadshipping.travel_booking'].sudo().search([('code', '=', booking_code)])
-        if booking.status == 'pending' or booking.status == 'rejected':
+        booking1 = request.env['m2st_hk_airshipping.travel_booking'].sudo().search([('code', '=', booking_code)])
+        if booking.status == 'pending' or booking.status == 'rejected' or booking1.status == 'pending' or booking1.status == 'rejected':
             error_response = {
                 'success': False,
                 'error_message': 'This booking can not change to complete!'
             }
             return error_response
-        if booking.status == 'completed':
+        if booking.status == 'completed' or booking1.status == 'completed':
             error_response = {
                 'success': False,
                 'error_message': 'This booking was already completed!'
@@ -55,6 +49,9 @@ class TravelBookingController(http.Controller):
             return error_response
         if booking:
             booking.write({'status': 'completed'})
+            return "Booking completed successfully."
+        elif booking1:
+            booking1.write({'status': 'completed'})
             return "Booking completed successfully."
         else:
             return "Booking not found."
@@ -217,7 +214,7 @@ class TravelBookingController(http.Controller):
                 'error_message': 'Booking not found!'
             }
             return json.dumps(error_response)
-        if booking.status == 'accepted' or booking.status == 'rejected' or booking.status == 'completed':
+        if booking.status == 'accepted' or booking.status == 'completed':
             error_response = {
                 'success': False,
                 'error_message': 'This booking is no longer accessible!'
@@ -234,7 +231,6 @@ class TravelBookingController(http.Controller):
         luggage_width = post.get('luggage_width')
         luggage_height = post.get('luggage_height')
         luggage_weight = post.get('luggage_weight')
-
 
         if not booking_id:
             error_response = {
@@ -272,7 +268,7 @@ class TravelBookingController(http.Controller):
 
         if receiver_partner_id:
             booking.write(update_vals1)
-            booking._onchange_receiver_info()
+            booking._onchange_receiver_partner_id()
             booking._onchange_dimension()
         elif receiver_name and receiver_email or receiver_phone or receiver_address:
             booking.write(update_vals)
@@ -580,7 +576,6 @@ class TravelBookingController(http.Controller):
                 }
                 bookings_data.append(booking_data)
         return json.dumps(bookings_data)
-
 
     @http.route('/road/current/user/transfer/booking/<int:booking_id>', auth='user', csrf=False, website=True,
                 methods=['PUT'], type='json', cors='*')

@@ -69,6 +69,7 @@
           <field name="view_id" ref="travel_tree"/>
             <field name="domain">[('status', '=', 'accepted')]</field>
             <field name="context">{}</field>
+           <field name="search_view_id" ref="travel_tree"/>
      </record>
 
          <record id="travel_action_road_rejected" model="ir.actions.act_window">
@@ -79,6 +80,7 @@
           <field name="view_id" ref="travel_tree"/>
             <field name="domain">[('status', '=', 'rejected')]</field>
             <field name="context">{}</field>
+             <field name="search_view_id" ref="travel_tree"/>
      </record>
 
              <record id="travel_action_road_pending" model="ir.actions.act_window">
@@ -89,6 +91,7 @@
           <field name="view_id" ref="travel_tree"/>
             <field name="domain">[('status', '=', 'pending')]</field>
             <field name="context">{}</field>
+             <field name="search_view_id" ref="travel_tree"/>
      </record>
 
 
@@ -99,6 +102,7 @@
             <field name="res_model">m2st_hk_roadshipping.travel_booking</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('status', '=', 'pending')]</field>
+            <field name="search_view_id" ref="view_road_travel_booking_tree"/>
         </record>
 
            <record id="action_booking_road_accepted" model="ir.actions.act_window">
@@ -106,6 +110,7 @@
             <field name="res_model">m2st_hk_roadshipping.travel_booking</field>
             <field name="view_mode">tree,form</field>
                <field name="domain">[('status', '=', 'accepted')]</field>
+               <field name="search_view_id" ref="view_road_travel_booking_tree"/>
         </record>
 
            <record id="action_booking_road_rejected" model="ir.actions.act_window">
@@ -113,6 +118,7 @@
             <field name="res_model">m2st_hk_roadshipping.travel_booking</field>
             <field name="view_mode">tree,form</field>
              <field name="domain">[('status', '=', 'rejected')]</field>
+               <field name="search_view_id" ref="view_road_travel_booking_tree"/>
         </record>
 
            <record id="action_booking_road_completed" model="ir.actions.act_window">
@@ -120,6 +126,7 @@
             <field name="res_model">m2st_hk_roadshipping.travel_booking</field>
             <field name="view_mode">tree,form</field>
                <field name="domain">[('status', '=', 'completed')]</field>
+               <field name="search_view_id" ref="view_road_travel_booking_tree"/>
         </record>
         <!-- Menu -->
 
@@ -129,13 +136,7 @@
             <field name="name">Bookings Negotiations</field>
             <field name="res_model">m2st_hk_roadshipping.message</field>
             <field name="view_mode">tree,form</field>
-        </record>
-
-                <!-- Action -->
-        <record id="action_messaging" model="ir.actions.act_window">
-            <field name="name">Bookings Negotiations</field>
-            <field name="res_model">m2st_hk_roadshipping.message</field>
-            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_m2st_hk_roadshipping_message_tree"/>
         </record>
 
 
